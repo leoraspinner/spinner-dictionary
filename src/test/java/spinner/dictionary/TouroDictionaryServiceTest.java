@@ -9,12 +9,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TouroDictionaryServiceTest {
     private TouroDictionaryService service;
-    private final String LAMBDA_URL = "https://3bfbhimanmuhzbmmmdjkhovsa40osneh.lambda-url.us-east-2.on.aws/";
+    private final String lambdaUrl = "https://3bfbhimanmuhzbmmmdjkhovsa40osneh.lambda-url.us-east-2.on.aws/";
 
     @Test
-    public void testLookupValidWord () throws IOException {
+    public void testLookupValidWord() throws IOException {
         TouroDictionaryServiceFactory factory = new TouroDictionaryServiceFactory();
-        service = factory.getService(LAMBDA_URL);
+        service = factory.getService(lambdaUrl);
 
         //Given - a word exits
         DictionaryRequest request = new DictionaryRequest("DAYSTAR");
@@ -34,7 +34,7 @@ public class TouroDictionaryServiceTest {
     @Test
     public void testLookupInvalidWord() throws IOException {
         TouroDictionaryServiceFactory factory = new TouroDictionaryServiceFactory();
-        service = factory.getService(LAMBDA_URL);
+        service = factory.getService(lambdaUrl);
 
         // Given - a word that doesn't exist in the dictionary
         DictionaryRequest request = new DictionaryRequest("XYZABC");
@@ -53,7 +53,7 @@ public class TouroDictionaryServiceTest {
     @Test
     public void testLookupCaseInsensitive() throws IOException {
         TouroDictionaryServiceFactory factory = new TouroDictionaryServiceFactory();
-        service = factory.getService(LAMBDA_URL);
+        service = factory.getService(lambdaUrl);
 
         // Given - a lowercase word of word that exists
         DictionaryRequest request = new DictionaryRequest("daystar");

@@ -1,5 +1,6 @@
 package spinner.dictionary;
-/*holds the data that gets sent back to the user (outgoing)*/
+
+//holds the data that gets sent back to the user (outgoing)
 
 public class DictionaryResponse {
     private String word;
