@@ -1,5 +1,6 @@
 package spinner.dictionary;
 
+import io.reactivex.rxjava3.core.Single;
 import org.junit.jupiter.api.Test;
 import retrofit2.Call;
 import retrofit2.Response;
@@ -20,15 +21,12 @@ public class TouroDictionaryServiceTest {
         DictionaryRequest request = new DictionaryRequest("DAYSTAR");
 
         //When - looking up the word
-        Call<DictionaryResponse> call = service.lookup(request);
-        Response<DictionaryResponse> response = call.execute();
+        DictionaryResponse response = service.lookup(request).blockingGet();
 
         //Then - get response with definition
-        assertTrue(response.isSuccessful());
-        assertNotNull(response.body());
-        assertEquals("DAYSTAR", response.body().getWord());
-        assertNotNull(response.body().getDefinition());
-
+        assertNotNull(response);
+        assertEquals("DAYSTAR", response.getWord());
+        assertNotNull(response.getDefinition());
     }
 
     @Test
@@ -40,14 +38,12 @@ public class TouroDictionaryServiceTest {
         DictionaryRequest request = new DictionaryRequest("XYZABC");
 
         // When - look up the word
-        Call<DictionaryResponse> call = service.lookup(request);
-        Response<DictionaryResponse> response = call.execute();
+        DictionaryResponse response = service.lookup(request).blockingGet();
 
         // Then - should get a successful response with null definition
-        assertTrue(response.isSuccessful());
-        assertNotNull(response.body());
-        assertEquals("XYZABC", response.body().getWord());
-        assertNull(response.body().getDefinition());
+        assertNotNull(response);
+        assertEquals("XYZABC", response.getWord());
+        assertNull(response.getDefinition());
     }
 
     @Test
@@ -59,12 +55,10 @@ public class TouroDictionaryServiceTest {
         DictionaryRequest request = new DictionaryRequest("daystar");
 
         // When - look up the word
-        Call<DictionaryResponse> call = service.lookup(request);
-        Response<DictionaryResponse> response = call.execute();
+        DictionaryResponse response = service.lookup(request).blockingGet();
 
         // Then - should still get the definition
-        assertTrue(response.isSuccessful());
-        assertNotNull(response.body());
-        assertNotNull(response.body().getDefinition());
+        assertNotNull(response);
+        assertNotNull(response.getDefinition());
     }
 }
