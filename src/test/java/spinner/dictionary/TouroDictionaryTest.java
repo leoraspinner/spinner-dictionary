@@ -9,7 +9,7 @@ class TouroDictionaryTest {
     private TouroDictionary dictionary;
 
     @Test
-    public void testLookUpWord () {
+    public void testLookUpWord() {
         TouroDictionary dictionary = new TouroDictionary();
 
         // Given
