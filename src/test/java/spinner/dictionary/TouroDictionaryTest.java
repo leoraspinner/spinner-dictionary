@@ -1,6 +1,5 @@
 package spinner.dictionary;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -9,7 +8,7 @@ class TouroDictionaryTest {
     private TouroDictionary dictionary;
 
     @Test
-    public void testLookUpWord() {
+    public void lookUpWord() {
         TouroDictionary dictionary = new TouroDictionary();
 
         // Given

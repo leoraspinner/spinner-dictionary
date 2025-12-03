@@ -12,8 +12,4 @@ public class DictionaryRequest {
     public String getWord() {
         return word;
     }
-
-    public void setWord(String word) {
-        this.word = word;
-    }
 }

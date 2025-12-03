@@ -12,7 +12,7 @@ public class TouroDictionaryServiceTest {
     private final String lambdaUrl = "https://3bfbhimanmuhzbmmmdjkhovsa40osneh.lambda-url.us-east-2.on.aws/";
 
     @Test
-    public void testLookupValidWord() throws IOException {
+    public void lookupValidWord() throws IOException {
         TouroDictionaryServiceFactory factory = new TouroDictionaryServiceFactory();
         service = factory.getService(lambdaUrl);
 
@@ -32,7 +32,7 @@ public class TouroDictionaryServiceTest {
     }
 
     @Test
-    public void testLookupInvalidWord() throws IOException {
+    public void lookupInvalidWord() throws IOException {
         TouroDictionaryServiceFactory factory = new TouroDictionaryServiceFactory();
         service = factory.getService(lambdaUrl);
 
@@ -51,7 +51,7 @@ public class TouroDictionaryServiceTest {
     }
 
     @Test
-    public void testLookupCaseInsensitive() throws IOException {
+    public void lookupCaseInsensitive() throws IOException {
         TouroDictionaryServiceFactory factory = new TouroDictionaryServiceFactory();
         service = factory.getService(lambdaUrl);
 

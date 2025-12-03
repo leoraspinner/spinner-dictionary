@@ -36,8 +36,6 @@ public class TouroDictionary {
 
         } catch (IOException e) {
             e.printStackTrace();
-            return;
-
         }
     }
 

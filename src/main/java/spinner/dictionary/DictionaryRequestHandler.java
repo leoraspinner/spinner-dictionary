@@ -36,8 +36,7 @@ public class DictionaryRequestHandler
             apiResponse.setStatusCode(200);
             apiResponse.setBody(responseJson);
             return apiResponse;
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             //this prints the error to the AWS log file
             e.printStackTrace();
 
