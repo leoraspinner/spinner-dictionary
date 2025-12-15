@@ -14,7 +14,13 @@ public class TouroDictionary {
         loadDictionary();
     }
 
-    private void loadDictionary() {
+    public TouroDictionary(InputStream touroInputStream) throws IOException {
+        dictionary = new HashMap<>();
+        loadDictionary();
+    }
+
+    private void loadDictionary()
+    {
         InputStream dictionaryFile = TouroDictionary.class.getResourceAsStream("/dictionary.txt");
 
         if (dictionaryFile == null) {
@@ -22,6 +28,10 @@ public class TouroDictionary {
             return;
         }
 
+        loadDictionary(dictionaryFile);
+    }
+
+    private void loadDictionary(InputStream dictionaryFile) {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(dictionaryFile))) {
             String line;
 
@@ -33,7 +43,6 @@ public class TouroDictionary {
                     dictionary.put(word, definition);
                 }
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }

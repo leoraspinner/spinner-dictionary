@@ -5,9 +5,11 @@ import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent;
 import com.google.gson.Gson;
-
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import software.amazon.awssdk.services.s3.S3Client;
+import software.amazon.awssdk.services.s3.model.GetObjectRequest;
+import java.io.InputStream;
 
 public class DictionaryRequestHandler
         implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
@@ -15,8 +17,24 @@ public class DictionaryRequestHandler
     private Gson gson;
 
     public DictionaryRequestHandler() {
-        this.dictionary = new TouroDictionary();
-        this.gson = new Gson();
+        try {
+            S3Client s3Client = S3Client.create();
+
+            GetObjectRequest getObjectRequest = GetObjectRequest
+                    .builder()
+                    .bucket("spinner-dictionary")
+                    .key("dictionary.txt")
+                    .build();
+
+            InputStream dictionaryStream = s3Client.getObject(getObjectRequest);
+
+            this.dictionary = new TouroDictionary(dictionaryStream);
+            this.gson = new Gson();
+        } catch (Exception e) {
+            System.err.println("Failed to load dictionary from S3 bucket: " + e.getMessage());
+            e.printStackTrace();
+        }
+
     }
 
     @Override
